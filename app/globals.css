@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.auth {
+  @apply flex items-center justify-center min-h-screen w-full bg-blue-100
+}
