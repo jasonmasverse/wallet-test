@@ -1,6 +1,7 @@
 import Selection from '@/components/Selection';
 import { auth, currentUser, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
+import CreateWalletButton from '@/components/CreateWalletButton';
 
 export default async function CreateWallet() {
 
@@ -16,7 +17,7 @@ export default async function CreateWallet() {
       <main className='flex flex-col w-screen h-screen items-center p-16'>
         <div className='flex justify-start w-[19rem]'>
           <UserButton afterSignOutUrl="/" />
-          <p className='flex items-center font-semibold text-white pl-3'>Hi {user.firstName} {user.lastName}</p>
+          <p className='flex items-center font-semibold text-white pl-3'>Hi {user.firstName} {user.lastName} {user.emailAddresses[0].emailAddress}</p>
         </div>
         <div className='flex flex-col items-center pt-8 pb-8 text-white'>
           <p className='text-md font-semibold'>Wallet Accounts</p>
@@ -44,6 +45,7 @@ export default async function CreateWallet() {
           </div>
         </Link>
 
+        <CreateWalletButton email={user.emailAddresses[0].emailAddress} />
       </main>
     </>
   )
