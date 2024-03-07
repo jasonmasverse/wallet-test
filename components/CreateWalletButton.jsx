@@ -4,11 +4,11 @@ export default function CreateWalletButton({email}) {
 
     const createWallet = async () => {
         console.log(email);
-        const response = await fetch(`/api/wallet?email=${email}`, {
+        const response = await fetch(`/api/wallets?email=${email}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-            },
+            }
             // body: JSON.stringify({ email }),
         });
         const data = await response.json();
