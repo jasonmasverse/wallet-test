@@ -1,7 +1,6 @@
 import mysql from "mysql2/promise";
 
 let pool = undefined;
-console.log("test");
 export async function connect() {
 
   if(typeof pool !== 'undefined') {
