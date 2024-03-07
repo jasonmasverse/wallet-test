@@ -2,7 +2,7 @@ import { connect } from "@/db";
 import axios from "axios";
 const { NextResponse } = require("next/server");
 
-export async function GET(){
+export async function POST(){
     const conn = await connect();
 
     console.log(process.env.API)
@@ -25,11 +25,30 @@ export async function GET(){
         }
         
     } catch (error) {
-        console.log("hello", error)
+        return  NextResponse.json({
+            status : "error"
+        })
     }
 
     
     return  NextResponse.json({
-        hello : "world"
+        status : "success"
+    })
+}
+
+export async function GET(){
+    const conn = await connect();
+
+    // change email to user email 
+     const [results, fields] = await conn.execute(
+        'select * from wallet where email = ?',["test@email"]
+    );
+   
+    const data = results.length > 0 ? results[0] : {}
+
+    return  NextResponse.json({
+        status : results.length > 0 ? "success" : "fail",
+        data
+
     })
 }
