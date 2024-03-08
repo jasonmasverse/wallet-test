@@ -4,9 +4,10 @@ const { NextResponse } = require("next/server");
 
 export async function POST(req) {
     const data = await req.json()
+    let res = {}
 
     try {
-        const res = await axios(process.env.WALLET, {
+         res = await axios(process.env.WALLET, {
             method: "POST",
             headers: {
                 'Authorization': process.env.API,
@@ -18,7 +19,7 @@ export async function POST(req) {
             const conn = await connect();
             const [results, fields] = await conn.execute(
                 'INSERT into wallet (email,private,address) values (?,?,?)',
-                [data, res.data.result.address, res.data.result.privateKey]
+                [data.email, res.data.result.address, res.data.result.privateKey]
             );
         }
 

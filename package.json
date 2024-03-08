@@ -12,7 +12,7 @@
     "@clerk/nextjs": "^4.29.9",
     "axios": "^1.6.7",
     "mysql2": "^3.9.2",
-    "next": "14.1.2",
+    "next": "latest",
     "react": "^18",
     "react-dom": "^18"
   },
