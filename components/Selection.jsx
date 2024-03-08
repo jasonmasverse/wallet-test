@@ -5,7 +5,7 @@ import TokenPage from "./TokenPage";
 
 export default function Selection() {
 
-    const [selection, setSelection] = useState('token')
+    const [selection, setSelection] = useState('nft')
 
     return (
         <>
