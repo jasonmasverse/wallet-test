@@ -5,6 +5,8 @@ import Link from "next/link";
 export default function CreateWalletButton({ email }) {
 
     const [walletAdd, setwalletAdd] = useState(false)
+    const [loading, setLoading] = useState(true)
+
     const [addr, setaddr] = useState('')
 
     const truncateAddress = (address) => {
@@ -15,7 +17,6 @@ export default function CreateWalletButton({ email }) {
     };
 
     const checkWallet = async () => {
-        console.log(email);
         try {
             const response = await fetch(`/api/wallets?email=${email}`, {
                 method: 'GET',
@@ -33,6 +34,7 @@ export default function CreateWalletButton({ email }) {
         } catch (error) {
             console.error('An error occurred:', error)
         }
+        setLoading(false)
     };
 
     const createWallet = async () => {
@@ -53,17 +55,17 @@ export default function CreateWalletButton({ email }) {
         } catch (error) {
             console.error('An error occurred:', error)
         }
+        setLoading(false)
+
     };
 
     useEffect(() => {
         checkWallet();
-        // console.log(addr)
-    }, [createWallet,]);
+    }, []);
 
-    return (
-        <div className="flex flex-col items-center gap-8">
-
-            {walletAdd ? 
+    const showButton = () => {
+        if(loading) return
+        return walletAdd ? 
             <Link href={'/wallet'}>
                 <div className='flex flex-col bg-white/50 backdrop-blur-md shadow-xl rounded-[1.5rem] w-[330px] h-fit'>
                     <div className='flex w-full mx-8 my-4'>
@@ -86,7 +88,12 @@ export default function CreateWalletButton({ email }) {
                 </div>
             </Link>
                 : <button className="bg-white/45 backdrop-blur shadow-2xl drop-shadow-xl font-bold text-white rounded-full py-3 px-6 mt-20"
-                    onClick={createWallet}>Create Wallet</button>}
+                    onClick={createWallet}>Create Wallet</button>
+    }
+
+    return (
+        <div className="flex flex-col items-center gap-8">
+            {showButton()}
         </div>
     )
 }

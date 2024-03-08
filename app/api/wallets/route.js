@@ -1,12 +1,15 @@
 import { connect } from "@/db";
 import axios from "axios";
+import moment from "moment-timezone";
 const { NextResponse } = require("next/server");
 
 export async function POST(req) {
     const data = await req.json()
 
+    let res = null
     try {
-        const res = await axios(process.env.WALLET, {
+        
+        res = await axios(process.env.WALLET, {
             method: "POST",
             headers: {
                 'Authorization': process.env.API,
@@ -16,9 +19,10 @@ export async function POST(req) {
         if (res.data.status === 'success') {
 
             const conn = await connect();
+            const nowInMalaysia = moment.tz('Asia/Kuala_Lumpur').format('YYYY-MM-DD HH:mm:ss');
             const [results, fields] = await conn.execute(
-                'INSERT into wallet (email,private,address) values (?,?,?)',
-                [data, res.data.result.address, res.data.result.privateKey]
+                'INSERT into wallet (email,private,address, time) values (?,?,?,?)',
+                [data.email, res.data.result.address, res.data.result.privateKey, nowInMalaysia]
             );
         }
 
@@ -45,11 +49,28 @@ export async function GET(request) {
 
         // change email to user email 
         const [results, fields] = await conn.execute(
-            'select * from wallet where email = ?', [email]
+            'select email , address, time, (select count(*) from register where email = ?) as regs from wallet where email = ?', [email, email]
         );
+        let data = {};
+        if(results.length > 0){
+            
+            let showNFT = results[0].force 
+            if(!showNFT){
+                const time1 = moment.tz(results[0].time, "Asia/Kuala_Lumpur");
+                const time2 = moment.tz("Asia/Kuala_Lumpur");
 
-        const data = results.length > 0 ? results[0] : {}
+                const difference = Math.abs(time2.diff(time1, 'minutes'));
+                showNFT = Boolean(results[0].regs && difference > 15)   
+            }
 
+            data = {
+                "email": results[0].email,
+                "address": results[0].address,
+                showNFT
+            }
+        }
+
+        
         return NextResponse.json({
             status: results.length > 0 ? "success" : "fail",
             data
