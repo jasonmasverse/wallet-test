@@ -63,9 +63,10 @@ export default function CreateWalletButton({ email }) {
         checkWallet();
     }, []);
 
-    return (
-        <div className="flex flex-col items-center gap-8">
-            {walletAdd ? 
+
+    const showButton = () => {
+        if(loading) return 
+        return walletAdd ? 
             <Link href={'/wallet'}>
                 <div className='flex flex-col bg-white/50 backdrop-blur-md shadow-xl rounded-[1.5rem] w-[330px] h-fit'>
                     <div className='flex w-full mx-8 my-4'>
@@ -88,7 +89,14 @@ export default function CreateWalletButton({ email }) {
                 </div>
             </Link>
                 : <button className="bg-white/45 backdrop-blur shadow-2xl drop-shadow-xl font-bold text-white rounded-full py-3 px-6 mt-[10rem]"
-                    onClick={createWallet}>Create Wallet</button>}
+                    onClick={createWallet}>Create Wallet</button>
+
+    }
+
+
+    return (
+        <div className="flex flex-col items-center gap-8">
+            {showButton()}
         </div>
     )
 }
