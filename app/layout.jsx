@@ -12,8 +12,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider appearance={{ variables: { colorPrimary: '#7C3AED' } }}>
-      <html lang="en">
-        <body className={`${inter.className} bg-custom-background`}>
+      <html lang="en" className="no-scrollbar">
+        <body className={`${inter.className} bg-[url('/bg.png')] bg-cover bg-no-repeat`}>
           {children}
         </body>
       </html>

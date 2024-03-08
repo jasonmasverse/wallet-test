@@ -5,8 +5,7 @@ const { NextResponse } = require("next/server");
 
 export async function POST(req) {
     const data = await req.json()
-
-    let res = null
+    let res = {}
     try {
         
         res = await axios(process.env.WALLET, {

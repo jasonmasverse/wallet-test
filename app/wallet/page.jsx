@@ -13,7 +13,7 @@ export default async function Wallet() {
 
   return (
     <>
-      <main className='flex flex-col w-full items-center py-16'>
+      <main className='flex flex-col w-full h-[160vh] items-center my-10'>
         <div className='flex justify-start w-[19rem]'>
           <UserButton afterSignOutUrl="/" />
           <p className='flex items-center font-semibold text-white pl-3'>Hi {user.firstName} {user.lastName}</p>
