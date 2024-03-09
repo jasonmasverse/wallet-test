@@ -1,10 +1,7 @@
-import { auth, currentUser } from '@clerk/nextjs';
-import { redirect } from 'next/navigation'
-
 import Link from "next/link";
 import Image from "next/image";
 import { redirect } from 'next/navigation'
-import { auth, currentUser, UserButton } from '@clerk/nextjs';
+import { auth, currentUser } from '@clerk/nextjs';
 
 export default async function Home() {
 
@@ -12,7 +9,7 @@ export default async function Home() {
   const user = await currentUser();
 
   if (userId || user) {
-    redirect('/wallet')
+    redirect('/create-wallet')
   }
 
   return (
@@ -21,7 +18,7 @@ export default async function Home() {
         <Image alt="image" src="/Mas.svg" width={230} height={200}></Image>
         <p className="text-center text-md font-bold">An Early Access To Our Wallet </p>
         <br />
-        <p className="text-center max-w-[600px]">Dive into a vast network of blockchain ecosystem partners, ranging from financial services and decentralized applications (DApps) to educational platforms and sustainability projects.</p>
+        <p className="text-center max-w-[540px]">Dive into a vast network of blockchain ecosystem partners, ranging from financial services and decentralized applications (DApps) to educational platforms and sustainability projects.</p>
       </div>
 
       <div className="pt-8 flex flex-col gap-4">
