@@ -11,7 +11,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider appearance={{ variables: { colorPrimary: '#7C3AED' } }}>
+    <ClerkProvider
+      appearance={{
+        variables: { colorPrimary: "#7C3AED" },
+         layout: {
+          socialButtonsVariant: 'auto',
+          logoImageUrl: "/maschain.png",
+          logoPlacement: "inside",
+        }
+      }}
+    >
       <html lang="en" className="no-scrollbar">
         <body className={`${inter.className} bg-[url('/bg.png')] bg-cover bg-no-repeat`}>
           {children}

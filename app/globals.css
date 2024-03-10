@@ -7,11 +7,6 @@
   @apply flex items-center justify-center w-full min-h-screen
 }
 
-
-.cl-internal-17ydaof{
-  padding: auto;
-}
-
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -21,3 +16,23 @@
   -ms-overflow-style: none;
 }
 
+.cl-card{
+  @apply rounded-[1.5rem] shadow-lg !important
+}
+
+.cl-internal-vsyzrd{
+  @apply hidden !important
+}
+
+
+.cl-logoBox{
+  @apply flex justify-center !important
+}
+
+.cl-logoImage{
+  @apply h-[7.5rem] !important
+}
+
+.cl-userButtonPopoverActionButtonText__signOut{
+  @apply text-red-500 font-semibold !important
+}
