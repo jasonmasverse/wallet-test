@@ -36,7 +36,7 @@ export async function GET(request) {
         // change email to user email 
         const [results, fields] = await conn.query('select * from register');
 
-        const data = results.length > 0 ? results[0] : {}
+        const data = results.length > 0 ? results : {}
 
         return NextResponse.json({
             status: "success",

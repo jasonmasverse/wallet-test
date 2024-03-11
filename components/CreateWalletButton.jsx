@@ -61,7 +61,7 @@ export default function CreateWalletButton({ email }) {
 
     useEffect(() => {
         checkWallet();
-    }, []);
+    }, [createWallet]);
 
 
     const showButton = () => {
