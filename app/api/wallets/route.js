@@ -44,11 +44,11 @@ export async function POST(req) {
 export async function GET(request) {
     try {
         const email = request.url.split('email=')[1];
-        console.log("Before encode",email);
-        const encodeEmail = encodeURIComponent(email);
-        console.log("After encode",encodeEmail);
+        // console.log("Before encode",email);
+        const encodeEmail = decodeURIComponent(email);
+        // console.log("After encode",encodeEmail);
         const conn = await connect();
-        console.log("Connection",conn);
+        // console.log("Connection",conn);
 
         // change email to user email 
         const [results, fields] = await conn.execute(
@@ -57,7 +57,7 @@ export async function GET(request) {
         let data = {};
         if(results.length > 0){
             
-            console.log("Results",results);
+            // console.log("Results",results);
             let showNFT = results[0].force 
             if(!showNFT){
                 const time1 = moment.tz(results[0].time, "Asia/Kuala_Lumpur");
