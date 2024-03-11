@@ -44,11 +44,12 @@ export async function POST(req) {
 export async function GET(request) {
     try {
         const email = request.url.split('email=')[1];
+        const encodeEmail = encodeURIComponent(email);
         const conn = await connect();
 
         // change email to user email 
         const [results, fields] = await conn.execute(
-            'select email , address, time, (select count(*) from register where email = ?) as regs from wallet where email = ?', [email, email]
+            'select email , address, time, (select count(*) from register where email = ?) as regs from wallet where email = ?', [encodeEmail, encodeEmail]
         );
         let data = {};
         if(results.length > 0){
