@@ -13,7 +13,6 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider
       appearance={{
-        variables: { colorPrimary: "#7C3AED" },
          layout: {
           socialButtonsVariant: 'auto',
           logoImageUrl: "/maschain.png",

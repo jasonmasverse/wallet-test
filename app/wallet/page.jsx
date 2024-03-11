@@ -1,23 +1,13 @@
+import ProfileButton from '@/components/ProfileButton';
 import Selection from '@/components/Selection';
-import { auth, currentUser, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
 export default async function Wallet() {
 
-  const { userId } = auth();
-  const user = await currentUser();
-
-  if (!userId || !user) {
-    return <div>You are not logged in</div>;
-  }
-
   return (
     <>
-      <main className='flex flex-col w-full h-[160vh] items-center my-10'>
-        <div className='flex justify-start w-[19rem]'>
-          <UserButton afterSignOutUrl="/" />
-          <p className='flex items-center font-semibold text-white pl-3'>Hi {user.firstName} {user.lastName}</p>
-        </div>
+      <main className='flex flex-col w-full h-screen items-center my-10'>
+       <ProfileButton/>
         <div className='flex flex-col items-center pt-8 text-white'>
           <p className='text-md'>Current Wallet Balance</p>
           <p className='text-6xl font-semibold pt-8'>$ 00.00</p>
