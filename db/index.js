@@ -8,10 +8,10 @@ export async function connect() {
   }
 
   pool = await mysql.createConnection({
-    host: "190.92.217.73",
-    user: "root",
-    password:"OHM0708!rds",
-    database: "dev-day-demo",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password:process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
   });
 
 
