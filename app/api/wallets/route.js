@@ -7,7 +7,19 @@ export async function POST(req) {
     const data = await req.json()
     let res = {}
     try {
-        
+        const conn = await connect();
+        const [exist,field] = await conn.execute(
+            'select count(*) as count from wallet where email = ?', [data.email]
+        );
+        if(exist[0].count >= 1){
+            return NextResponse.json({
+                status: "fail",
+                data: {
+                    message : "Email already exist"
+                }
+            })
+        }
+
         res = await axios(process.env.WALLET, {
             method: "POST",
             headers: {
@@ -17,20 +29,19 @@ export async function POST(req) {
         });
         if (res.data.status === 'success') {
 
-            const conn = await connect();
             const nowInMalaysia = moment.tz('Asia/Kuala_Lumpur').format('YYYY-MM-DD HH:mm:ss');
             const [results, fields] = await conn.execute(
-                'INSERT into wallet (email,private,address, time) values (?,?,?,?)',
+                'INSERT into wallet (email,address,private,time) values (?,?,?,?)',
                 [data.email, res.data.result.address, res.data.result.privateKey, nowInMalaysia]
             );
         }
 
     } catch (error) {
+        console.error('An error occurred:', error)
         return NextResponse.json({
             status: "error"
         })
     }
-
 
     return NextResponse.json({
         status: "success",
@@ -50,32 +61,21 @@ export async function GET(request) {
         const conn = await connect();
         // console.log("Connection",conn);
 
+
         // change email to user email 
         const [results, fields] = await conn.execute(
-            'select email , address, time, (select count(*) from register where email = ?) as regs from wallet where email = ?', [encodeEmail, encodeEmail]
+            'select email , address from wallet where email = ?', [encodeEmail]
         );
         let data = {};
         if(results.length > 0){
-            
-            // console.log("Results",results);
-            let showNFT = results[0].force 
-            if(!showNFT){
-                const time1 = moment.tz(results[0].time, "Asia/Kuala_Lumpur");
-                const time2 = moment.tz("Asia/Kuala_Lumpur");
-
-                const difference = Math.abs(time2.diff(time1, 'minutes'));
-                showNFT = Boolean(results[0].regs && difference > 15)   
-            }
 
             data = {
                 "email": results[0].email,
                 "address": results[0].address,
-                showNFT
             }
             
         }
 
-        
         return NextResponse.json({
             status: results.length > 0 ? "success" : "fail",
             data

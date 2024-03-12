@@ -33,7 +33,7 @@ if (!userId || !user) {
                   className="flex-grow-0 flex-shrink-0"
                   preserveAspectRatio="xMidYMid meet"
                 >
-                  <circle cx="7.5" cy={8} r="7.5" fill="#F6ABFF" />
+                  <circle cx="7.5" cy={8} r="7.5" fill="#87D3F8" />
                 </svg>
                 <p className="flex-grow-0 flex-shrink-0 text-[12px] justify-left text-white font-semibold">
                   Account 1

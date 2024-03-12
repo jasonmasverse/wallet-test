@@ -22,7 +22,7 @@ export default function Registration() {
 
     return (
         <>
-        <div className="w-full h-screen flex flex-col justify-center items-center relative">
+        <div className="w-full h-screen flex flex-col justify-center items-center">
             <div className="absolute top-0 left-0 w-full h-full bg-[url('https://wallpaperswide.com/download/purple_abstract_design-wallpaper-1440x900.jpg')] bg-no-repeat bg-cover bg-center blur-sm mix-blend-luminosity"></div>
             <div className="bg-white/60 backdrop-blur-lg py-10 px-10 rounded-3xl m-20 flex flex-col items-center relative">
                 <Image src={'/launchnft.webp'} width={250} height={300} alt="maslogo" className="-mt-2 rounded-3xl"></Image>

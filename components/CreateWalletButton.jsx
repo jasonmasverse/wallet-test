@@ -1,11 +1,13 @@
 'use client'
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function CreateWalletButton({ email }) {
 
     const [walletAdd, setwalletAdd] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [disable, setDisable] = useState(false)
 
     const [addr, setaddr] = useState('')
 
@@ -49,10 +51,26 @@ export default function CreateWalletButton({ email }) {
             const data = await response.json();
             // console.log(data);
             if (data.status === 'success') {
+                setDisable(true);
                 setwalletAdd(true);
+                toast.success('Wallet Created !', {style: {
+                    borderRadius: '20px',
+                    background: '#7888a5',
+                    color: '#fff',
+                    padding: '12px',
+                  },
+                });
             }
 
         } catch (error) {
+            setDisable(false);
+            toast.error('Error', {style: {
+                borderRadius: '20px',
+                background: '#7888a5',
+                color: '#fff',
+                padding: '12px',
+              },
+            });
             console.error('An error occurred:', error)
         }
         setLoading(false)
@@ -79,7 +97,7 @@ export default function CreateWalletButton({ email }) {
                             className="flex-grow-0 flex-shrink-0"
                             preserveAspectRatio="xMidYMid meet"
                         >
-                            <circle cx="7.5" cy={8} r="7.5" fill="#F6ABFF" />
+                            <circle cx="7.5" cy={8} r="7.5" fill="#87D3F8" />
                         </svg>
                         <span className='flex flex-col pl-7 text-sm justify-center font-semibold text-white gap-2'>
                             <p>Account 1</p>
@@ -89,7 +107,7 @@ export default function CreateWalletButton({ email }) {
                 </div>
             </Link>
                 : <button className="bg-white/45 backdrop-blur shadow-2xl drop-shadow-xl font-bold text-white rounded-full py-3 px-6 mt-[10rem]"
-                    onClick={createWallet}>Create Wallet</button>
+                    disabled={disable} onClick={createWallet}>Create Wallet</button>
 
     }
 
@@ -97,6 +115,12 @@ export default function CreateWalletButton({ email }) {
     return (
         <div className="flex flex-col items-center gap-8">
             {showButton()}
+            <Toaster containerStyle={{
+                top: 660,
+                left: 20,
+                bottom: 20,
+                right: 20,
+            }}></Toaster>
         </div>
     )
 }
