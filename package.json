@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.9",
+    "@vercel/analytics": "^1.2.2",
     "axios": "^1.6.7",
     "moment-timezone": "^0.5.45",
     "mysql2": "^3.9.2",

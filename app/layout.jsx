@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from '@clerk/nextjs'
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
       <html lang="en" className="no-scrollbar">
         <body className={`${inter.className} bg-[url('/bg.png')] bg-cover bg-no-repeat`}>
           {children}
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
