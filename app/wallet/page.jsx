@@ -43,7 +43,7 @@ if (!userId || !user) {
             <CopyClipboard email={email}/>
           </div>
         </div>
-        <Selection />
+        <Selection email ={email}/>
       </main>
     </>
   )

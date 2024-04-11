@@ -1,11 +1,34 @@
 'use client'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import OwnedNFT from '@/components/OwnedNFT';
 import TokenPage from "./TokenPage";
 
-export default function Selection() {
+export default function Selection({email}) {
 
     const [selection, setSelection] = useState('nft')
+    const [beforeDevday, setBeforeDevday] = useState(false);
+
+    const checkWallet = async () => {
+        try {
+            const response = await fetch(`/api/wallets?email=${email}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            const data = await response.json();
+            if (data.status === 'success') {
+                setBeforeDevday(data.data.before_devday);
+            }
+
+        } catch (error) {
+            console.error('An error occurred:', error)
+        }
+    };
+
+    useEffect(() => {
+        checkWallet();
+    }, []);
 
     return (
         <>
@@ -21,7 +44,7 @@ export default function Selection() {
             {selection === 'token' ? (
                 <TokenPage />
             ) : (
-                <OwnedNFT />
+                <OwnedNFT checkDevDay={beforeDevday}/>
             )}
         </>
     )

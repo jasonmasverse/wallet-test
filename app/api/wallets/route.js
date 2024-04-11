@@ -64,14 +64,15 @@ export async function GET(request) {
 
         // change email to user email 
         const [results, fields] = await conn.execute(
-            'select email , address from wallet where email = ?', [encodeEmail]
+            'select email , address, time from wallet where email = ?', [encodeEmail]
         );
         let data = {};
         if(results.length > 0){
-
+            const time1 = moment.tz(results[0].time, "Asia/Kuala_Lumpur");
             data = {
                 "email": results[0].email,
                 "address": results[0].address,
+                "before_devday": time1.isBefore('2024-04-01')
             }
             
         }
