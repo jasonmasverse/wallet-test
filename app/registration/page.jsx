@@ -1,7 +1,7 @@
 'use client'
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function Registration({id, email}) {
+export default function Registration({id, email, check}) {
 
     const register = async (e) => {
         // e.preventDefault()
@@ -63,6 +63,7 @@ export default function Registration({id, email}) {
                 });
             }
         }
+        check();
         } catch (error) {
             // setDisable(false);
             toast.error('Error', {style: {

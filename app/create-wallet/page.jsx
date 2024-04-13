@@ -49,7 +49,7 @@ export default async function CreateWallet() {
         </div>
 
         {show_form ? (
-          <Registration id = {id} email={email}/>
+          <Registration id = {id} email={email} check={checkDetails()}/>
         ) : (
           <>
             <div className='flex flex-col items-center pt-8 pb-8 text-white'>
