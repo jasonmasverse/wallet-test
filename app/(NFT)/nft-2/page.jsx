@@ -14,7 +14,7 @@ export default function NftPage() {
           <p className={`${Tap ? 'hidden ' : ''}text-xl font-semibold`}>NFT Preview</p>
           <Image src='/devday.webp' width={100} height={100} alt='nft image' className={`${Tap ? 'mt-8 flex-grow-0 flex-shrink-0 w-[350px] h-[350px] rounded-[18px] ' : 'mt-8 flex-grow-0 flex-shrink-0 w-[250px] h-[250px] rounded-[18px]'} ease-in-out transition-all duration-500`} onClick={() => setTap(!Tap)}></Image>
           <p className={`${Tap ? 'hidden ' : ''} mt-8 text-lg font-bold`}>MasChain DevDay II</p>
-          <p className={`mt-8 text-sm max-w-[260px] text-center ${Tap ? 'hidden ' : ''}`}>
+          <p className={`mt-8 text-sm max-w-[260px] text-center font-semibold ${Tap ? 'hidden ' : ''}`}>
             Thank you very much for joining our event. As a token of appreciation we would like to give you a special NFT just for you.</p>
         </div>
 

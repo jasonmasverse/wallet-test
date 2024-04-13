@@ -19,7 +19,7 @@ export default function OwnedNFT({checkDevDay}) {
     return (
       <Link href='/nft-3' className='flex flex-col bg-white/50 backdrop-blur-md shadow-xl rounded-[1.5rem] w-[320px] h-fit'>
       <div className='flex w-full mx-10 my-4'>
-        <Image src='/nft2.png' width={80} height={90} alt="nft" className='flex-grow-0 flex-shrink-0 w-[60px] h-[60px] rounded-[13px]'></Image>
+        <Image src='/ogTicket.png' width={80} height={90} alt="nft" className='flex-grow-0 flex-shrink-0 w-[60px] h-[60px] rounded-[13px]'></Image>
         <span className='flex flex-col pl-7 text-sm justify-center text-white gap-2 max-w-[160px] text-center'>
           <p className="text-[16px] font-bold">OG Gathering Ticket</p>
         </span>
