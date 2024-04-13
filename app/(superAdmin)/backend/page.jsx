@@ -70,7 +70,7 @@ const Backdoor = async () => {
       </div>
 
       {data.map((item) => (
-        <div className="flex bg-gray-100 mx-6 border-[1px] border-gray-400 text-md gap-4 py-3">
+        <div className="flex bg-gray-100 mx-6 border-[1px] border-gray-400 text-md gap-4 py-3" key={item.id}>
           <div className="flex flex-col w-6 px-4">
             <p>{item.id}</p>
           </div>
