@@ -34,7 +34,7 @@ export async function POST(req) {
 
             const conn = await connect();
             const nowInMalaysia = moment.tz('Asia/Kuala_Lumpur').format('YYYY-MM-DD HH:mm:ss');
-            console.log(data.email, res?.data.result.wallet.wallet_address, data?.phone, data?.name, data?.ic , nowInMalaysia)
+            // console.log(data.email, res?.data.result.wallet.wallet_address, data?.phone, data?.name, data?.ic , nowInMalaysia)
             const [results, fields] = await conn.execute(
                 'INSERT into wallet (email, address, phone, name , ic , time) values (?,?,?,?,?,?)',
                 [data.email, res?.data.result.wallet.wallet_address, data?.phone, data?.name, data?.ic , nowInMalaysia]
