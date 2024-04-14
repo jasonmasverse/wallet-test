@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function Registration({id, email, check}) {
 
     const register = async (e) => {
-        // e.preventDefault()
+        e.preventDefault()
         const formData = new FormData(e.target);
         const rawFormData = {
             name: formData.get('name'),
@@ -14,7 +14,7 @@ export default function Registration({id, email, check}) {
         console.log(rawFormData)
 
         try {
-            if(id === null) {
+            if(id === "") {
             const response = await fetch(`/api/wallets`, {
                 method: 'POST',
                 headers: {
@@ -102,7 +102,7 @@ export default function Registration({id, email, check}) {
                 <label htmlFor="number" className="font-bold text-slate-800 flex flex-col">&ensp;Phone number
                     <input type="number" name="phone_number" placeholder="" className="bg-slate-200 border-[1.5px] border-gray-300 p-2 rounded-xl mt-1 outline-none" required />
                 </label>
-                    <button type="submit" className="mt-4 bg-blue-700 text-white font-bold py-3 px-6 rounded-full drop-shadow-2xl shadow-lg">Submit</button>
+                    <button type="submit" className="mt-4 bg-blue-700 text-white font-bold py-3 px-6 rounded-full drop-shadow-2xl shadow-lg" onClick={() => check()}>Submit</button>
                 </div>
             </form>
             </div>
