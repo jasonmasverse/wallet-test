@@ -35,8 +35,9 @@ export default function Registration({id, email, check}) {
                     background: '#7888a5',
                     color: '#fff',
                     padding: '12px',
-                  },
-                });
+                },
+            });
+            check(false);
             }
         } else {
             const response = await fetch(`/api/wallets`, {
@@ -59,13 +60,12 @@ export default function Registration({id, email, check}) {
                     background: '#7888a5',
                     color: '#fff',
                     padding: '12px',
-                  },
-                });
+                },
+            });
+            check(false);
             }
         }
-        check();
         } catch (error) {
-            // setDisable(false);
             toast.error('Error', {style: {
                 borderRadius: '20px',
                 background: '#7888a5',
@@ -102,7 +102,7 @@ export default function Registration({id, email, check}) {
                 <label htmlFor="number" className="font-bold text-slate-800 flex flex-col">&ensp;Phone number
                     <input type="number" name="phone_number" placeholder="" className="bg-slate-200 border-[1.5px] border-gray-300 p-2 rounded-xl mt-1 outline-none" required />
                 </label>
-                    <button type="submit" className="mt-4 bg-blue-700 text-white font-bold py-3 px-6 rounded-full drop-shadow-2xl shadow-lg" onClick={() => check()}>Submit</button>
+                    <button type="submit" className="mt-4 bg-blue-700 text-white font-bold py-3 px-6 rounded-full drop-shadow-2xl shadow-lg">Submit</button>
                 </div>
             </form>
             </div>

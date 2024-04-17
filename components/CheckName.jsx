@@ -35,12 +35,12 @@ const CheckName = ({email}) => {
 
     useEffect(() => {
         checkDetails();
-    }, [[],email,id])
+    }, [email,id])
 
   return (
     <div>
         {showForm ? (
-          <Registration id = {id} email={email} check={checkDetails}/>
+          <Registration id = {id} email={email} check={setShowForm}/>
         ) : (
           <>
             <div className='flex flex-col items-center pt-8 pb-8 text-white'>
